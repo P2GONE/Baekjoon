@@ -7,14 +7,14 @@ int main() {
 	char inputarr[100];
 	int input_len;
 	int new_input_len;
-	//ÀÔ·ÂÀ» ¹ŞÀ½
+	//ì…ë ¥ì„ ë°›ìŒ
 	scanf("%s", inputarr);
-	//input Å©±â¸¦ input_len¿¡ ÀúÀåÇÔ
+	//input í¬ê¸°ë¥¼ input_lenì— ì €ì¥í•¨
 	input_len = strlen(inputarr);
-	//Æ¯¼ö ¹®ÀÚ¸¦ °¨ÁöÇÒ count¸¦ ¼±¾ğÇÔ
+	//íŠ¹ìˆ˜ ë¬¸ìë¥¼ ê°ì§€í•  countë¥¼ ì„ ì–¸í•¨
 	int counter = 0;
-	//¹İº¹¹®À» ÅëÇØ Æ¯¼ö ¹®ÀÚÀÇ °¹¼ö¸¦ È®ÀÎÇÔ
-	//¸¸¾à Å©·Î¾ÆÆ¼¾Æ ¾ËÆÄºªÀ» ÀÎÁöÇÑ ÈÄ counter °ªÀ» ¿Ã·È´Ù¸é, ÇØ´ç ¾ËÆÄºªÀ» ¾È¾²´Â ¼öÀÎ 0À¸·Î ¹Ù²ãÁÜ
+	//ë°˜ë³µë¬¸ì„ í†µí•´ íŠ¹ìˆ˜ ë¬¸ìì˜ ê°¯ìˆ˜ë¥¼ í™•ì¸í•¨
+	//ë§Œì•½ í¬ë¡œì•„í‹°ì•„ ì•ŒíŒŒë²³ì„ ì¸ì§€í•œ í›„ counter ê°’ì„ ì˜¬ë ¸ë‹¤ë©´, í•´ë‹¹ ì•ŒíŒŒë²³ì„ ì•ˆì“°ëŠ” ìˆ˜ì¸ 0ìœ¼ë¡œ ë°”ê¿”ì¤Œ
 	for (int i = 0; i < input_len; i++) {
 		if (inputarr[i] == 'c' && inputarr[i + 1] == '=') {
 			counter++;
@@ -58,7 +58,7 @@ int main() {
 			inputarr[i + 1] = '0';
 		}
 	}
-	//Æ¯¼ö¹®ÀÚ¸¦ »« ¹®ÀÚ¿­ÀÇ °¹¼ö¸¦ printÇÔ
+	//íŠ¹ìˆ˜ë¬¸ìë¥¼ ëº€ ë¬¸ìì—´ì˜ ê°¯ìˆ˜ë¥¼ printí•¨
 	new_input_len = input_len - counter;
 	printf("%d", new_input_len);
 

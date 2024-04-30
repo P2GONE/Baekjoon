@@ -5,16 +5,16 @@
 #define MAXNUM 20000
 #define MAXLEN 50
 
-// ¹®ÀÚ¿­ ºñ±³ ÇÔ¼ö
+// ë¬¸ìì—´ ë¹„êµ í•¨ìˆ˜
 int compare(const void* a, const void* b) {
     const char* str1 = *(const char**)a;
     const char* str2 = *(const char**)b;
 
-    // ¸ÕÀú ¹®ÀÚ¿­ÀÇ ±æÀÌ¸¦ ºñ±³
+    // ë¨¼ì € ë¬¸ìì—´ì˜ ê¸¸ì´ë¥¼ ë¹„êµ
     int lengthCompare = strlen(str1) - strlen(str2);
-    if (lengthCompare != 0) // ±æÀÌ°¡ ´Ù¸£¸é ±æÀÌ¿¡ µû¶ó ºñ±³
+    if (lengthCompare != 0) // ê¸¸ì´ê°€ ë‹¤ë¥´ë©´ ê¸¸ì´ì— ë”°ë¼ ë¹„êµ
         return lengthCompare;
-    else // ±æÀÌ°¡ °°À¸¸é ¾ËÆÄºª ¼ø¼­·Î ºñ±³
+    else // ê¸¸ì´ê°€ ê°™ìœ¼ë©´ ì•ŒíŒŒë²³ ìˆœì„œë¡œ ë¹„êµ
         return strcmp(str1, str2);
 }
 
@@ -22,31 +22,31 @@ int main() {
     int total_num = 0;
     char** arr;
 
-    // ÀúÀåÇÒ ÃÑ °¹¼ö¸¦ ÀÔ·Â¹ŞÀ½
+    // ì €ì¥í•  ì´ ê°¯ìˆ˜ë¥¼ ì…ë ¥ë°›ìŒ
     scanf("%d", &total_num);
 
-    // µ¿ÀûÀ¸·Î ¹è¿­ ÇÒ´ç
+    // ë™ì ìœ¼ë¡œ ë°°ì—´ í• ë‹¹
     arr = (char**)malloc(total_num * sizeof(char*));
     if (arr == NULL) {
         printf("Memory allocation failed.");
         return -1; // indicate failure
     }
 
-    // ÀÔ·ÂµéÀ» ¹è¿­¿¡ ÀúÀåÇÔ
+    // ì…ë ¥ë“¤ì„ ë°°ì—´ì— ì €ì¥í•¨
     for (int i = 0; i < total_num; i++) {
         arr[i] = (char*)malloc((MAXLEN + 1) * sizeof(char));
         if (arr[i] == NULL) {
             printf("Memory allocation failed.");
             return -1; // indicate failure
         }
-        // ¹®ÀÚ¿­ ÀÔ·Â¹ŞÀ½
+        // ë¬¸ìì—´ ì…ë ¥ë°›ìŒ
         scanf("%s", arr[i]);
     }
 
-    // ¹®ÀÚ¿­À» Á¤·Ä
+    // ë¬¸ìì—´ì„ ì •ë ¬
     qsort(arr, total_num, sizeof(char*), compare);
 
-    // Áßº¹ Á¦°Å ÈÄ Ãâ·Â
+    // ì¤‘ë³µ ì œê±° í›„ ì¶œë ¥
     printf("%s\n", arr[0]);
     for (int i = 1; i < total_num; i++) {
         if (strcmp(arr[i], arr[i - 1]) != 0) {
@@ -54,7 +54,7 @@ int main() {
         }
     }
 
-    // µ¿Àû ÇÒ´ç ÇØÁ¦
+    // ë™ì  í• ë‹¹ í•´ì œ
     for (int i = 0; i < total_num; i++) {
         free(arr[i]);
     }

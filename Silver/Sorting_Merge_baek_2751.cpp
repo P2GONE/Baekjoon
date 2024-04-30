@@ -8,7 +8,7 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
-// Merge ¾Ë°í¸®Áò (º´ÇÕ)
+// Merge ì•Œê³ ë¦¬ì¦˜ (ë³‘í•©)
 void merge(int* array, int left_start, int left_end, int right_start, int right_end) {
     int left_size = left_end - left_start + 1;
     int right_size = right_end - right_start + 1;
@@ -40,7 +40,7 @@ void merge(int* array, int left_start, int left_end, int right_start, int right_
     free(merged_array);
 }
 
-// Merge sort ¾Ë°í¸®Áò
+// Merge sort ì•Œê³ ë¦¬ì¦˜
 void merge_sort(int* array, int start, int end) {
     if (start < end) {
         int mid = (start + end) / 2;
@@ -54,30 +54,30 @@ int main() {
     int total_num = 0;
     int* arr;
 
-    // ÀúÀåÇÒ ÃÑ °¹¼ö¸¦ ÀÔ·Â¹ÞÀ½
+    // ì €ìž¥í•  ì´ ê°¯ìˆ˜ë¥¼ ìž…ë ¥ë°›ìŒ
     scanf("%d", &total_num);
 
-    // µ¿ÀûÀ¸·Î ¹è¿­ ÇÒ´ç
+    // ë™ì ìœ¼ë¡œ ë°°ì—´ í• ë‹¹
     arr = (int*)malloc(total_num * sizeof(int));
     if (arr == NULL) {
         printf("Memory allocation failed.");
         return -1; // indicate failure
     }
 
-    // ÀÔ·ÂµéÀ» ¹è¿­¿¡ ÀúÀåÇÔ
+    // ìž…ë ¥ë“¤ì„ ë°°ì—´ì— ì €ìž¥í•¨
     for (int i = 0; i < total_num; i++) {
         scanf("%d", &arr[i]);
     }
 
-    // Merge sort È£ÃâÇÏ¿© ¹è¿­ Á¤·Ä
+    // Merge sort í˜¸ì¶œí•˜ì—¬ ë°°ì—´ ì •ë ¬
     merge_sort(arr, 0, total_num - 1);
 
-    // Á¤·ÄµÈ °ª Ãâ·Â
+    // ì •ë ¬ëœ ê°’ ì¶œë ¥
     for (int i = 0; i < total_num; i++) {
         printf("%d\n", arr[i]);
     }
 
-    // µ¿ÀûÀ¸·Î ÇÒ´çÇÑ ¸Þ¸ð¸® ÇØÁ¦
+    // ë™ì ìœ¼ë¡œ í• ë‹¹í•œ ë©”ëª¨ë¦¬ í•´ì œ
     free(arr);
 
     return 0;

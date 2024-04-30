@@ -2,28 +2,28 @@
 #include <stdlib.h>
 #pragma warning(disable : 4996)
 
-// ºñ±³ ÇÔ¼ö
-// compareÀÇ ¿À¸§Â÷¼ø Á¤·Ä
-// return À½¼ö¸é º¯°æ, ¾ç¼ö¸é º¯°æÇÏÁö ¾ÊÀ½
+// ë¹„êµ í•¨ìˆ˜
+// compareì˜ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+// return ìŒìˆ˜ë©´ ë³€ê²½, ì–‘ìˆ˜ë©´ ë³€ê²½í•˜ì§€ ì•ŠìŒ
 /*
 int comparator(const void* p, const void* q)
 {
    int l = ((struct Student*)p)->marks;
    int r = ((struct Student*)q)->marks;
    return (l - r);
-   // ¾Õ ºÎºĞÀÌ µŞ ºÎºĞº¸´Ù Å©¸é returnÀÌ ¾ç¼ö, º¯°æÇÏÁö ¾ÊÀ½. 
-   // ¿À¸§Â÷¼ø Á¤·Ä
+   // ì• ë¶€ë¶„ì´ ë’· ë¶€ë¶„ë³´ë‹¤ í¬ë©´ returnì´ ì–‘ìˆ˜, ë³€ê²½í•˜ì§€ ì•ŠìŒ. 
+   // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 }
 */
-// compareÀÇ ³»¸²Â÷¼ø Á¤·Ä
+// compareì˜ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 /*
 int comparator(const void* p, const void* q)
 {
    int l = ((struct Student*)p)->marks;
    int r = ((struct Student*)q)->marks;
    return (r - 1);
-   // ¾Õ-µÚ>0¸é ¹Ù²Ş
-   // ³»¸²Â÷¼ø Á¤·Ä 
+   // ì•-ë’¤>0ë©´ ë°”ê¿ˆ
+   // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ 
 }
 */
 
@@ -31,24 +31,24 @@ int compare(const void* A, const void* B) {
     const int* a = (const int*)A;
     const int* b = (const int*)B;
 
-    return *b - *a; // ³»¸²Â÷¼ø Á¤·Ä
+    return *b - *a; // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 }
 int main(int argc, char* argv[]) {
     long input_num;
     int count = 0;
     int* num_arr = NULL;
 
-    // Á¤¼ö ÀÔ·Â ¹Ş±â
+    // ì •ìˆ˜ ì…ë ¥ ë°›ê¸°
     scanf("%ld", &input_num);
-    if (input_num < 0 || input_num > 1000000000) { // ¹üÀ§ Ã¼Å©
+    if (input_num < 0 || input_num > 1000000000) { // ë²”ìœ„ ì²´í¬
         printf("Wrong input!");
         return 0;
     }
 
-    // ÀÔ·ÂµÈ ¼öÀÇ ÀÚ¸´¼ö °è»ê
+    // ì…ë ¥ëœ ìˆ˜ì˜ ìë¦¿ìˆ˜ ê³„ì‚°
     long temp = input_num;
     if (temp == 0) {
-        count = 1; // 0ÀÏ °æ¿ì¿¡µµ ÀÚ¸´¼ö´Â 1
+        count = 1; // 0ì¼ ê²½ìš°ì—ë„ ìë¦¿ìˆ˜ëŠ” 1
     }
     else {
         while (temp != 0) {
@@ -57,29 +57,29 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // µ¿Àû ¸Ş¸ğ¸® ÇÒ´ç
+    // ë™ì  ë©”ëª¨ë¦¬ í• ë‹¹
     num_arr = (int*)malloc(count * sizeof(int));
     if (num_arr == NULL) {
         printf("Memory allocation failed\n");
         return 1;
     }
 
-    // ÀÔ·ÂµÈ ¼öÀÇ °¢ ÀÚ¸´¼ö¸¦ ¹è¿­¿¡ ÀúÀå
+    // ì…ë ¥ëœ ìˆ˜ì˜ ê° ìë¦¿ìˆ˜ë¥¼ ë°°ì—´ì— ì €ì¥
     for (int i = 0; i < count; i++) {
         num_arr[i] = input_num % 10;
         input_num /= 10;
     }
 
-    // ¹è¿­À» ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+    // ë°°ì—´ì„ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
     qsort(num_arr, count, sizeof(int), compare);
 
-    // Á¤·ÄµÈ ¹è¿­ Ãâ·Â
+    // ì •ë ¬ëœ ë°°ì—´ ì¶œë ¥
     for (int i = 0; i < count; i++) {
         printf("%d", num_arr[i]);
     }
     printf("\n");
 
-    // µ¿Àû ÇÒ´çµÈ ¸Ş¸ğ¸® ÇØÁ¦
+    // ë™ì  í• ë‹¹ëœ ë©”ëª¨ë¦¬ í•´ì œ
     free(num_arr);
 
     return 0;

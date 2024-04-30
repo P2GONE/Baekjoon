@@ -14,45 +14,45 @@ int top = -1;
 
 int IsEmpty() {
     if (top < 0) {
-        return 1; // ºñ¾î ÀÖÀ½À» ³ªÅ¸³»´Â 1 ¹İÈ¯, True
+        return 1; // ë¹„ì–´ ìˆìŒì„ ë‚˜íƒ€ë‚´ëŠ” 1 ë°˜í™˜, True
     }
     else {
-        return 0; // ºñ¾îÀÖÁö ¾ÊÀ½À» ³ªÅ¸³»´Â 0 ¹İÈ¯, False
+        return 0; // ë¹„ì–´ìˆì§€ ì•ŠìŒì„ ë‚˜íƒ€ë‚´ëŠ” 0 ë°˜í™˜, False
     }
 }
 
 int IsFull() {
     if (top >= MAX_STACK_SIZE - 1) {
-        return 1; // °¡µæ ÂüÀ» ³ªÅ¸³»´Â 1 ¹İÈ¯, True
+        return 1; // ê°€ë“ ì°¸ì„ ë‚˜íƒ€ë‚´ëŠ” 1 ë°˜í™˜, True
     }
     else {
-        return 0; // °¡µæ Â÷Áö ¾ÊÀ½À» ³ªÅ¸³»´Â 0 ¹İÈ¯, False
+        return 0; // ê°€ë“ ì°¨ì§€ ì•ŠìŒì„ ë‚˜íƒ€ë‚´ëŠ” 0 ë°˜í™˜, False
     }
 }
 
 void push(int value) {
-    if (IsFull() == 1) // °¡µæ Âù »óÅÂ
-        printf("½ºÅÃÀÌ °¡µæ Ã¡½À´Ï´Ù.\n");
+    if (IsFull() == 1) // ê°€ë“ ì°¬ ìƒíƒœ
+        printf("ìŠ¤íƒì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.\n");
     else
         stack[++top] = value;
 }
 
 int command_top() {
-    if (IsEmpty() == 1) // ½ºÅÃÀÌ ºñ¾îÀÖ´Â °æ¿ì
-        return -1; // ½ºÅÃÀÌ ºó °æ¿ì -1 ¹İÈ¯
+    if (IsEmpty() == 1) // ìŠ¤íƒì´ ë¹„ì–´ìˆëŠ” ê²½ìš°
+        return -1; // ìŠ¤íƒì´ ë¹ˆ ê²½ìš° -1 ë°˜í™˜
     else
-        return stack[top]; // ½ºÅÃÀÇ ¸Ç À§¿¡ ÀÖ´Â Á¤¼ö ¹İÈ¯
+        return stack[top]; // ìŠ¤íƒì˜ ë§¨ ìœ„ì— ìˆëŠ” ì •ìˆ˜ ë°˜í™˜
 }
 
 int command_pop() {
-    if (IsEmpty() == 1) // ½ºÅÃÀÌ ºñ¾îÀÖ´Â °æ¿ì
-        return -1; // ½ºÅÃÀÌ ºñ¾îÀÖÀ½À» ³ªÅ¸³»´Â -1 ¹İÈ¯
+    if (IsEmpty() == 1) // ìŠ¤íƒì´ ë¹„ì–´ìˆëŠ” ê²½ìš°
+        return -1; // ìŠ¤íƒì´ ë¹„ì–´ìˆìŒì„ ë‚˜íƒ€ë‚´ëŠ” -1 ë°˜í™˜
     else
-        return stack[top--]; // ¸Ç À§ÀÇ °ª Á¦°ÅÇÏ°í ¹İÈ¯
+        return stack[top--]; // ë§¨ ìœ„ì˜ ê°’ ì œê±°í•˜ê³  ë°˜í™˜
 }
 
 void command_size() {
-    printf("%d\n", top + 1); // ½ºÅÃ¿¡ µé¾îÀÖ´Â Á¤¼öÀÇ °³¼ö Ãâ·Â
+    printf("%d\n", top + 1); // ìŠ¤íƒì— ë“¤ì–´ìˆëŠ” ì •ìˆ˜ì˜ ê°œìˆ˜ ì¶œë ¥
 }
 
 int main() {
@@ -66,35 +66,35 @@ int main() {
     }
 
     for (int i = 0; i < total_size; i++) {
-        //command¸¦ ÀúÀåÇÔ
+        //commandë¥¼ ì €ì¥í•¨
         scanf("%s", commands[i].command);
-        //¸¸¾à command¿¡ push°¡ Æ÷ÇÔÀÌ¸é, push¿Í ÇÔ²² ÀúÀåµÈ ÇØ´ç ¼ıÀÚ¸¦ value¿¡ ÀúÀåÇÔ
-        //¸¸¾à push¸¦ Æ÷ÇÔÇÏÁö ¾ÊÀ¸¸é ¸í·ÉÀ» command¿¡ ÀúÀåÇÔ
+        //ë§Œì•½ commandì— pushê°€ í¬í•¨ì´ë©´, pushì™€ í•¨ê»˜ ì €ì¥ëœ í•´ë‹¹ ìˆ«ìë¥¼ valueì— ì €ì¥í•¨
+        //ë§Œì•½ pushë¥¼ í¬í•¨í•˜ì§€ ì•Šìœ¼ë©´ ëª…ë ¹ì„ commandì— ì €ì¥í•¨
         if (strcmp(commands[i].command, "push") == 0) {
             scanf("%d", &commands[i].value);
         }
     }
 
     for (int i = 0; i < total_size; i++) {
-        //¹®ÀÚ¿­¿¡ popÀÌ ÀÖÀ¸¸é command_popÀ» ½ÇÇàÇÔ
+        //ë¬¸ìì—´ì— popì´ ìˆìœ¼ë©´ command_popì„ ì‹¤í–‰í•¨
         if (strcmp(commands[i].command, "pop") == 0) {
-            //popÀ» ½ÇÇàÇÏ°í °á°ú¸¦ printÇÔ
+            //popì„ ì‹¤í–‰í•˜ê³  ê²°ê³¼ë¥¼ printí•¨
             printf("%d\n", command_pop());
         }
         else if (strcmp(commands[i].command, "size") == 0) {
-            //size¸¦ ½ÇÇàÇÔ
+            //sizeë¥¼ ì‹¤í–‰í•¨
             command_size();
         }
         else if (strcmp(commands[i].command, "empty") == 0) {
-            //empty¸¦ ½ÇÇàÇÏ°í °á°ú¸¦ printÇÔ
+            //emptyë¥¼ ì‹¤í–‰í•˜ê³  ê²°ê³¼ë¥¼ printí•¨
             printf("%d\n", IsEmpty());
         }
         else if (strcmp(commands[i].command, "top") == 0) {
-            //topÀ» ½ÇÇàÇÏ°í °á°ú¸¦ printÇÔ
+            //topì„ ì‹¤í–‰í•˜ê³  ê²°ê³¼ë¥¼ printí•¨
             printf("%d\n", command_top());
         }
         else if (strcmp(commands[i].command, "push") == 0) {
-            //ÇØ´ç value¸¦ push¿¡ ³ÖÀ½
+            //í•´ë‹¹ valueë¥¼ pushì— ë„£ìŒ
             push(commands[i].value);
         }
     }

@@ -1,53 +1,52 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#pragma warning(disable : 4996)
-#define MAX_NUM 100000
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#define min(A,B) A<B?A:B
+// min 매크로는 두 값 중 작은 값을 반환함 
+int arr[1000001];
 
-// % : 나머지, / : 몫
-void divid(const int num) {
-    int remain = num, count = 0;
-    while (remain > 1) {
-        // X가 3으로 나누어 떨어지면, 3으로 나눈다.
-        if (remain % 3 == 0 && remain > 3) {
-            remain /= 3;
-        }
-        // 3으로 나눈 나머지가 1인 경우, 1을 빼고 3으로 나눈다.
-        else if (remain % 3 == 1 && remain > 3) {
-            remain = remain - 1;
-            remain /= 3;
-            count++;
-        }
-        // 3으로 나눈 나머지가 2인 경우, 1을 뺀 뒤 진행
-        else if (remain % 3 == 2 && remain > 3) {
-            remain--;
-            count++;
-        }
-        // X가 2로 나누어 떨어지면, 2로 나눈다.
-        else if (remain % 2 == 0) {
-            remain /= 2;
-        }
-        // 2로 나눈 나머지가 1인 경우, 1을 뺀 뒤 진행
-        else {
-            remain--;
-            count++;
-        }
-    }
-    printf("%d", count+1);
-}
+/*
+우리가 할 수 있는 연산은 다음과 같다
+1. 현재의 수에서 1을 빼기
+2. 현재 수가 3으로 나누어떨어지면 3으로 나누기
+3. 현재 수가 2로 나누어떨어지면 2로 나누기
+이 알고리즘은 arr 배열을 사용하여 각 숫자에 대해 1로 만드는 데 필요한 최소 연산 횟수를 저장한다.
+*/
+// 동적 계획법으로 코드를 작성함 => num[i] = mmin(arr[i-1], arr[i/3],arr[i/2])+1
 
+/*
+동적 프로그래밍은(DP)은 복잡한 문제를 더 작은 하위 문제로 나누어 해결하고, 그 결과를 저장하여 재사용하는 방법임.
+숫자 i를 1로 만드는 최소 연산 횟수를 계산하기 위해 arr 배열을 사용함.
+*/
 
+/*
+예를 들어 10을 입력하면, i를 증가함
+i = 2 >> 2에서 1로 만드는데 1번의 연산이 필요
+i = 3 >> 3에서 1로 만드는데 1번의 연산이 필요 
+i = 4 >> 4에서 1로 만드는데 2번의 연산이 필요
+i = 5 >> 5에서 1로 만드는데 3번의 연산이 필요
+i = 6 >> 6에서 1로 만드는데 3번의 연산이 필요
+i = 7 >> 7에서 1로 만드는데 3번의 연산이 필요
+i = 8 >> 8에서 1로 만드는데 3번의 연산이 필요
+i = 9 >> 9에서 1로 만드는데 2번의 연산이 필요
+i = 10 >> 10에서 1로 만드는데 3번의 연산이 필요
 
-
+이전까지 필요한 연산들은 이미 만들었기에 곧바로 구할 수 있음
+*/
 
 int main() {
-    int total_num;
-    // 전체 갯수를 입력받음
-    // 입력은 3부터 5000까지의 값임
-    scanf("%d", &total_num);
-    if (total_num < 1 || total_num > MAX_NUM) {
-        printf("Wrong input!");
-        return 0;
-    }
-    divid(total_num);
+    int X;
+    // 정수 X를 1로 만드는 연산 횟수의 최솟값은 arr[X]로 출력 
+    scanf("%d", &X);
+    //arr[i]는 i를 1로 만드는데 필요한 최소 연산 횟수임 
+    for (int i = 2; i <= X; i++) {
+        arr[i] = arr[i - 1] + 1;
+        // i에서 1을 뺀 경우의 연산 횟수를 저장함 
+        if (i % 3 == 0)
+            arr[i] = min(arr[i], arr[i / 3] + 1);
+        //i가 3으로 나누어 떨어질 때 arr[i] 값을 arr[i/3]+1과 비교하여 더 작은 값으로 갱신함
+        if (i % 2 == 0)
+            arr[i] = min(arr[i], arr[i / 2] + 1);
+    }   //i가 2로 나누어 떨어질 떄 arr[i] 값을 arr[i/2]+1과 비교하여 더 작은 값으로 갱신함
+    printf("%d", arr[X]);
+    return 0;
 }

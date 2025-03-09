@@ -14,8 +14,8 @@ void bfs(int start, int end) {
     dist[start] = 0; // 시작점 거리 = 0
 
     while (!q.empty()) {
-        int x = q.front();
-        q.pop();
+        int x = q.front();      // 현재 위치 저장
+        q.pop();                // 큐에서 제거
 
         // 목표 도착 시 출력 후 종료
         if (x == end) {
@@ -24,11 +24,13 @@ void bfs(int start, int end) {
         }
 
         // 3가지 이동 방식 (-1, +1, *2)
+        // 큐를 사용하면서 이동 가능한 위치를 탐색
+        // 각 움직이는 큐와 해당 큐와 이동 횟수를 함께 저장, 겹친다면 하지 않음
         int next_positions[] = { x - 1, x + 1, x * 2 };
-        for (int nx : next_positions) {
-            if (nx >= 0 && nx <= MAXNUM && dist[nx] == -1) {
-                dist[nx] = dist[x] + 1;
-                q.push(nx);
+        for (int nx : next_positions) {                             // 이동 가능한 위치 탐색
+            if (nx >= 0 && nx <= MAXNUM && dist[nx] == -1) {        // 방문하지 않았다면
+                dist[nx] = dist[x] + 1;                             // 이동 횟수 저장
+                q.push(nx);                                         // 다음 탐색할 위치 큐에 추가 
             }
         }
     }

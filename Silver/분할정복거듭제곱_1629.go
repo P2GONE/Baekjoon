@@ -9,6 +9,8 @@ import (
 var reader = bufio.NewReader(os.Stdin)
 var writer = bufio.NewWriter(os.Stdout)
 
+// 모듈러 거듭제곱
+
 func power(a, b, mod int64) int64 {
 	result := int64(1)
 	a %= mod

@@ -22,23 +22,31 @@ func bfs01(start, end int) int {
 
 	for len(deque) > 0 {
 		now := deque[0]
+		INF := 1 << 30
+		for i := range dist {
+			if dist[i] == -1 {
+				dist[i] = INF
+			}
+		}
 		deque = deque[1:]
 		if now == end {
 			return dist[now]
 		}
-		newN1 = now + 1
-		newN2 = now - 1
-		newN3 = now * 2
+		newN1 := now + 1
+		newN2 := now - 1
+		newN3 := now * 2
 
-		if newN3 <= max && dist[newN3] == -1 {
+		// 비용이 0인 것은 front, 비용이 드는것은 back에 넣는다.
+		// ...은 슬라이스를 펼쳐서 개별 원소로 전달하는 문법이다
+		if newN3 <= max && dist[now] < dist[newN3] {
 			dist[newN3] = dist[now]
-			deque = append(deque, newN3)
+			deque = append([]int{newN3}, deque...)
 		}
-		if newN1 <= max && dist[newN1] == -1 {
+		if newN1 <= max && dist[now]+1 < dist[newN1] {
 			dist[newN1] = dist[now] + 1
 			deque = append(deque, newN1)
 		}
-		if newN2 >= 0 && dist[newN2] == -1 {
+		if newN2 >= 0 && dist[now]+1 < dist[newN2] {
 			dist[newN2] = dist[now] + 1
 			deque = append(deque, newN2)
 		}
